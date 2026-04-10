@@ -3,280 +3,3234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiet ATL | Electric Lawn Care</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Grantlanta Lawn - Atlanta's trusted landscaping company since 2016. Lawn maintenance, hardscaping, cleanups, and more. 100% satisfaction guaranteed.">
+    <title>Grantlanta Lawn | Atlanta's Premier Landscape & Lawn Care Company</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --primary: #3b82f6;
-            --primary-dark: #2563eb;
+            --primary: #16a34a;
+            --primary-dark: #15803d;
+            --primary-light: #22c55e;
+            --primary-lighter: #4ade80;
+            --accent: #fbbf24;
             --dark: #0f172a;
+            --gray-900: #1e293b;
+            --gray-800: #334155;
             --gray-600: #475569;
+            --gray-400: #94a3b8;
+            --gray-200: #e2e8f0;
             --gray-100: #f1f5f9;
             --white: #ffffff;
-            --green: #16a34a;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--dark); }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-        .nav {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background: var(--white);
-            padding: 20px 40px;
+            color: var(--gray-800);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-content {
+            text-align: center;
+        }
+
+        .preloader-logo {
+            font-size: 3rem;
+            color: var(--primary);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .preloader-bar {
+            width: 200px;
+            height: 3px;
+            background: var(--gray-800);
+            margin-top: 30px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .preloader-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            animation: loading 1.5s ease-in-out forwards;
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 15px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav.scrolled .nav-logo {
+            color: var(--dark);
+        }
+
+        .nav.scrolled .nav-link {
+            color: var(--gray-800);
+        }
+
+        .nav.scrolled .nav-toggle span {
+            background: var(--dark);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
         }
+
         .nav-logo {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: var(--dark);
+            color: var(--white);
+            transition: color 0.3s ease;
+            cursor: pointer;
         }
+
         .nav-logo-icon {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--primary), #60a5fa);
-            border-radius: 10px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 4px 15px rgba(22, 163, 74, 0.3);
+        }
+
+        .nav-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(22, 163, 74, 0.3);
+            cursor: pointer;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(22, 163, 74, 0.4);
+        }
+
+        /* Mobile Menu */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--dark);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 20px;
+            text-decoration: none;
+            color: var(--white);
+            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mobile-nav.active .mobile-nav-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav.active .mobile-nav-link:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-nav.active .mobile-nav-link:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-nav.active .mobile-nav-link:nth-child(3) { transition-delay: 0.3s; }
+        .mobile-nav.active .mobile-nav-link:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-nav.active .mobile-nav-link:nth-child(5) { transition-delay: 0.5s; }
+
+        /* Page Sections */
+        .page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a3a2f 50%, var(--dark) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(22, 163, 74, 0.2) 100%);
+        }
+
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-text {
+            color: var(--white);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(22, 163, 74, 0.2);
+            border: 1px solid rgba(22, 163, 74, 0.3);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .hero-title-highlight {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(22, 163, 74, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(22, 163, 74, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 50px;
+            margin-top: 60px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.8s forwards;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 5px;
+        }
+
+        .hero-visual {
+            position: relative;
+            opacity: 0;
+            animation: fadeInRight 1s ease 0.5s forwards;
+        }
+
+        .hero-image-container {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, transparent 50%);
+        }
+
+        .hero-floating-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: floatCard 6s ease-in-out infinite;
+        }
+
+        .hero-floating-card-1 {
+            bottom: 40px;
+            left: -60px;
+            animation-delay: 0s;
+        }
+
+        .hero-floating-card-2 {
+            top: 40px;
+            right: -40px;
+            animation-delay: 2s;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .floating-card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 1.2rem;
+            margin-bottom: 15px;
         }
-        .nav-logo span { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; }
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--gray-600); font-weight: 500; }
-        .nav-cta {
-            background: var(--primary);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            text-decoration: none;
+
+        .floating-card-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .floating-card-text {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        .floating-card-stars {
+            display: flex;
+            gap: 3px;
+            color: var(--accent);
+            margin-top: 10px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Trusted By Section */
+        .trusted {
+            background: var(--white);
+            padding: 60px 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .trusted-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .trusted-text {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 2px;
             font-weight: 600;
         }
 
-        .hero {
-            background: linear-gradient(135deg, var(--dark), #1e3a5f);
-            padding: 120px 40px;
-            text-align: center;
-            color: white;
+        .trusted-logos {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
         }
-        .hero-badge {
+
+        .trusted-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-400);
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .trusted-logo:hover {
+            opacity: 1;
+        }
+
+        /* Section Styles */
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px;
+        }
+
+        .section-badge {
             display: inline-block;
-            background: rgba(59, 130, 246, 0.2);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            padding: 10px 25px;
+            background: rgba(22, 163, 74, 0.1);
+            color: var(--primary);
+            padding: 10px 20px;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-description {
+            font-size: 1.15rem;
+            color: var(--gray-600);
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 120px 0;
+            background: var(--gray-100);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            border-color: var(--gray-200);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.1), rgba(34, 197, 94, 0.1));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .service-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .service-description {
+            color: var(--gray-600);
+            line-height: 1.7;
             margin-bottom: 25px;
         }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
-        .hero h1 span { color: var(--primary); }
-        .hero p { font-size: 1.3rem; opacity: 0.9; max-width: 700px; margin: 0 auto 40px; }
-        .hero-btn {
-            background: var(--primary);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
+
+        .service-price {
             font-weight: 700;
+            color: var(--primary);
             font-size: 1.1rem;
+        }
+
+        .service-link {
             display: inline-flex;
             align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-link:hover {
+            gap: 15px;
+        }
+
+        /* Why Choose Us Section */
+        .why-us {
+            padding: 120px 0;
+            background: var(--white);
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .why-us-image {
+            position: relative;
+        }
+
+        .why-us-image-main {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .why-us-image-accent {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            bottom: -40px;
+            right: -40px;
+            border: 8px solid var(--white);
+        }
+
+        .why-us-badge {
+            position: absolute;
+            top: 30px;
+            left: -30px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(22, 163, 74, 0.3);
+        }
+
+        .why-us-badge-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .why-us-badge-text {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .why-us-content h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .why-us-content > p {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(22, 163, 74, 0.1), rgba(34, 197, 94, 0.1));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .feature-text p {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a3a2f 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2316a34a' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .process .section-header {
+            position: relative;
+            z-index: 1;
+        }
+
+        .process .section-title {
+            color: var(--white);
+        }
+
+        .process .section-description {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-card::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            z-index: 0;
+        }
+
+        .process-card:last-child::after {
+            display: none;
+        }
+
+        .process-number {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-number span {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .process-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .process-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 120px 0;
+            background: var(--gray-100);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-quote {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.1;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 4px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            color: var(--gray-800);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-name {
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .testimonial-location {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        /* Partners Section */
+        .partners {
+            padding: 120px 0;
+            background: var(--white);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .partner-card {
+            background: linear-gradient(135deg, var(--gray-100), var(--white));
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .partner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .partner-card:hover::before {
+            opacity: 1;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(22, 163, 74, 0.2);
+        }
+
+        .partner-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .partner-card:hover .partner-icon,
+        .partner-card:hover h3,
+        .partner-card:hover p,
+        .partner-card:hover .partner-link {
+            color: var(--white);
+        }
+
+        .partner-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            transition: color 0.4s ease;
+        }
+
+        .partner-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+            transition: color 0.4s ease;
+        }
+
+        .partner-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 25px;
+            transition: color 0.4s ease;
+        }
+
+        .partner-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .cta::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .cta-text h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .cta-text > p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .cta-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .cta-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .cta-feature i {
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .cta-form-container {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-form h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .cta-form-subtitle {
+            color: var(--gray-600);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 18px 24px;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: var(--gray-400);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             gap: 10px;
         }
 
-        .benefits {
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(22, 163, 74, 0.3);
+        }
+
+        .form-note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            padding: 80px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand {
+            max-width: 350px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .footer-logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .footer-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .footer-brand > p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-contact-item i {
+            color: var(--primary);
+            margin-top: 4px;
+        }
+
+        .footer-bottom {
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(22, 163, 74, 0.4);
+            border: none;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Page Header Styles */
+        .page-hero {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a3a2f 100%);
+            padding: 150px 40px 100px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .page-hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .page-hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+        }
+
+        .page-hero-stat h3 {
+            font-size: 3rem;
+            color: var(--accent);
+        }
+
+        .page-hero-stat p {
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        /* Services Page */
+        .services-page-section {
             padding: 80px 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
-        .benefits h2 { text-align: center; font-size: 2.5rem; margin-bottom: 60px; }
-        .benefits-grid {
+
+        .services-page-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-page-card {
+            background: var(--gray-100);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .service-page-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-page-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+
+        .service-page-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .service-page-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Reviews Page */
+        .reviews-page-section {
+            padding: 80px 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .review-page-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .review-page-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-stars {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--gray-800);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .review-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .review-name {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+
+        .review-location {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+        }
+
+        /* Team Page */
+        .team-section {
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
         }
-        .benefit-card {
+
+        .team-card {
             text-align: center;
-            padding: 40px;
             background: var(--gray-100);
-            border-radius: 20px;
+            border-radius: 24px;
+            padding: 50px 40px;
+            transition: all 0.3s ease;
         }
-        .benefit-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary), #60a5fa);
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border: 6px solid var(--primary);
+        }
+
+        .team-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .team-role {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .team-bio {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .values-section {
+            background: var(--gray-100);
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .values-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--dark);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .value-item {
+            padding: 30px;
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .value-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .value-item p {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* Quiet ATL Page */
+        .quiet-hero {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a3a2f 100%);
+            padding: 150px 40px 120px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .quiet-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(22, 163, 74, 0.2);
+            border: 1px solid rgba(22, 163, 74, 0.3);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .quiet-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 25px;
+        }
+
+        .quiet-hero h1 span {
+            color: var(--primary-light);
+        }
+
+        .quiet-hero > p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        .quiet-benefits {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .quiet-benefits h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--dark);
+        }
+
+        .quiet-benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 40px;
+        }
+
+        .quiet-benefit-card {
+            text-align: center;
+            padding: 50px 30px;
+            background: var(--gray-100);
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .quiet-benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiet-benefit-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 2rem;
-            margin: 0 auto 25px;
+            font-size: 2.2rem;
+            margin: 0 auto 30px;
         }
-        .benefit-card h3 { font-size: 1.4rem; margin-bottom: 15px; }
-        .benefit-card p { color: var(--gray-600); line-height: 1.7; }
 
-        .comparison {
+        .quiet-benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .quiet-benefit-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .comparison-section {
             background: var(--gray-100);
-            padding: 80px 40px;
+            padding: 100px 40px;
             text-align: center;
         }
-        .comparison h2 { font-size: 2.5rem; margin-bottom: 50px; }
+
+        .comparison-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 50px;
+            color: var(--dark);
+        }
+
         .comparison-table {
             max-width: 800px;
             margin: 0 auto;
             background: white;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
         }
+
         .comparison-row {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
-            padding: 20px 30px;
+            padding: 25px 40px;
             border-bottom: 1px solid var(--gray-100);
+            align-items: center;
         }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
         .comparison-row.header {
             background: var(--dark);
             color: white;
             font-weight: 700;
-        }
-        .comparison-row span:first-child { text-align: left; }
-        .check { color: var(--green); font-weight: 700; }
-        .x { color: #ef4444; }
-
-        .cta {
-            background: var(--primary);
-            padding: 80px 40px;
-            text-align: center;
-            color: white;
-        }
-        .cta h2 { font-size: 2.5rem; margin-bottom: 15px; }
-        .cta p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 30px; }
-        .cta-btn {
-            background: white;
-            color: var(--primary);
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
             font-size: 1.1rem;
         }
 
-        .footer {
-            background: var(--dark);
-            padding: 40px;
-            text-align: center;
-            color: rgba(255,255,255,0.6);
+        .comparison-row span:first-child {
+            text-align: left;
         }
 
-        @media (max-width: 768px) {
-            .nav-links, .nav-cta { display: none; }
-            .hero h1 { font-size: 2rem; }
-            .comparison-row { font-size: 0.9rem; padding: 15px; }
+        .comparison-row span {
+            text-align: center;
+        }
+
+        .check {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .x-mark {
+            color: #ef4444;
+            font-size: 1.2rem;
+        }
+
+        /* Simple CTA */
+        .simple-cta {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 100px 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .simple-cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .simple-cta > p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .simple-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            color: var(--primary);
+            padding: 20px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .simple-cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Simple Footer */
+        .simple-footer {
+            background: var(--dark);
+            padding: 50px 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .simple-footer p {
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .hero-floating-card-1 {
+                left: 20px;
+            }
+
+            .hero-floating-card-2 {
+                right: 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-card::after {
+                display: none;
+            }
+
+            .cta-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .why-us-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .quiet-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .section-container {
+                padding: 0 20px;
+            }
+
+            .hero-content {
+                padding: 0 20px;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .hero-floating-card {
+                display: none;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-form-container {
+                padding: 30px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .page-hero {
+                padding: 130px 20px 80px;
+            }
+
+            .services-page-section,
+            .reviews-page-section,
+            .team-section,
+            .quiet-benefits {
+                padding: 60px 20px;
+            }
+
+            .comparison-row {
+                padding: 15px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <nav class="nav">
-        <a href="quietatl.html" class="nav-logo">
-            <div class="nav-logo-icon"><i class="fas fa-bolt"></i></div>
-            <span>Quiet ATL</span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="index.html">Grantlanta Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="reviews.html">Reviews</a></li>
-            <li><a href="meettheteam.html">Our Team</a></li>
-        </ul>
-        <a href="index.html#contact" class="nav-cta">Get Quote</a>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <i class="fas fa-leaf preloader-logo"></i>
+            <div class="preloader-bar">
+                <div class="preloader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="showPage('home')">
+                <div class="nav-logo-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <span class="nav-logo-text">Grantlanta Lawn</span>
+            </div>
+            <ul class="nav-links">
+                <li><span class="nav-link active" data-page="home" onclick="showPage('home')">Home</span></li>
+                <li><span class="nav-link" data-page="services" onclick="showPage('services')">Services</span></li>
+                <li><span class="nav-link" data-page="reviews" onclick="showPage('reviews')">Reviews</span></li>
+                <li><span class="nav-link" data-page="team" onclick="showPage('team')">Our Team</span></li>
+                <li><span class="nav-link" data-page="quiet" onclick="showPage('quiet')">Quiet ATL</span></li>
+            </ul>
+            <span class="nav-cta" onclick="scrollToContact()">
+                <i class="fas fa-comment-dots"></i>
+                Get Free Quote
+            </span>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </nav>
 
-    <section class="hero">
-        <span class="hero-badge"><i class="fas fa-bolt"></i> &nbsp;100% Electric Lawn Care</span>
-        <h1>The <span>Quiet</span> Revolution in Lawn Care</h1>
-        <p>All the beauty of a perfectly maintained lawn without the noise, emissions, or disruption. Better for you, your neighbors, and the planet.</p>
-        <a href="index.html#contact" class="hero-btn">
-            <i class="fas fa-calendar-check"></i>
-            Schedule Electric Service
-        </a>
-    </section>
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><span class="mobile-nav-link" onclick="showPage('home'); closeMobileNav()">Home</span></li>
+            <li><span class="mobile-nav-link" onclick="showPage('services'); closeMobileNav()">Services</span></li>
+            <li><span class="mobile-nav-link" onclick="showPage('reviews'); closeMobileNav()">Reviews</span></li>
+            <li><span class="mobile-nav-link" onclick="showPage('team'); closeMobileNav()">Our Team</span></li>
+            <li><span class="mobile-nav-link" onclick="showPage('quiet'); closeMobileNav()">Quiet ATL</span></li>
+        </ul>
+    </div>
 
-    <section class="benefits">
-        <h2>Why Go Electric?</h2>
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon"><i class="fas fa-volume-mute"></i></div>
-                <h3>Whisper Quiet</h3>
-                <p>No more 7am wake-up calls from gas-powered mowers. Our electric equipment operates at a fraction of the noise level.</p>
+    <!-- ==================== HOME PAGE ==================== -->
+    <div id="page-home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-particles" id="particles"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <span class="hero-badge-dot"></span>
+                        Serving Atlanta Since 2016
+                    </div>
+                    <h1 class="hero-title">
+                        Transform Your Outdoor Space Into a 
+                        <span class="hero-title-highlight">Living Masterpiece</span>
+                    </h1>
+                    <p class="hero-description">
+                        Atlanta's most trusted landscaping collective. We deliver exceptional lawn care, stunning hardscaping, and eco-friendly solutions with a 100% satisfaction guarantee.
+                    </p>
+                    <div class="hero-buttons">
+                        <span class="btn btn-primary" onclick="scrollToContact()">
+                            <i class="fas fa-calendar-check"></i>
+                            Get Your Free Quote
+                        </span>
+                        <span class="btn btn-secondary" onclick="showPage('services')">
+                            <i class="fas fa-play-circle"></i>
+                            View Our Work
+                        </span>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-number" data-count="500">0</div>
+                            <div class="hero-stat-label">Happy Clients</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number" data-count="8">0</div>
+                            <div class="hero-stat-label">Years Experience</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number" data-count="100">0</div>
+                            <div class="hero-stat-label">% Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image-container">
+                        <img src="https://images.unsplash.com/photo-1558904541-efa843a96f01?w=800&h=600&fit=crop" alt="Beautiful landscaped garden" class="hero-image">
+                        <div class="hero-image-overlay"></div>
+                    </div>
+                    <div class="hero-floating-card hero-floating-card-1">
+                        <div class="floating-card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="floating-card-title">100% Guaranteed</div>
+                        <div class="floating-card-text">Satisfaction Promise</div>
+                    </div>
+                    <div class="hero-floating-card hero-floating-card-2">
+                        <div class="floating-card-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="floating-card-title">5-Star Rated</div>
+                        <div class="floating-card-text">On Google Reviews</div>
+                        <div class="floating-card-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="benefit-card">
-                <div class="benefit-icon"><i class="fas fa-leaf"></i></div>
-                <h3>Zero Emissions</h3>
-                <p>No gas, no fumes, no carbon footprint. Just clean, green lawn care powered by electricity.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon"><i class="fas fa-heart"></i></div>
-                <h3>Healthier Air</h3>
-                <p>Better for your family, pets, and everyone who enjoys your outdoor space. No harmful exhaust.</p>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon"><i class="fas fa-home"></i></div>
-                <h3>Neighbor Friendly</h3>
-                <p>Work from home? Have a baby napping? Our quiet equipment won't disturb your life.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="comparison">
-        <h2>Electric vs. Gas Comparison</h2>
-        <div class="comparison-table">
-            <div class="comparison-row header">
-                <span>Feature</span>
-                <span>Electric</span>
-                <span>Gas</span>
+        <!-- Trusted By -->
+        <section class="trusted">
+            <div class="trusted-container">
+                <span class="trusted-text">Trusted By Atlanta's Best</span>
+                <div class="trusted-logos">
+                    <span class="trusted-logo">Buckhead HOA</span>
+                    <span class="trusted-logo">Midtown Properties</span>
+                    <span class="trusted-logo">Decatur Living</span>
+                    <span class="trusted-logo">Alpharetta Homes</span>
+                    <span class="trusted-logo">Sandy Springs</span>
+                </div>
             </div>
-            <div class="comparison-row">
-                <span>Quiet Operation</span>
-                <span class="check">✓</span>
-                <span class="x">✗</span>
-            </div>
-            <div class="comparison-row">
-                <span>Zero Emissions</span>
-                <span class="check">✓</span>
-                <span class="x">✗</span>
-            </div>
-            <div class="comparison-row">
-                <span>No Gas Smell</span>
-                <span class="check">✓</span>
-                <span class="x">✗</span>
-            </div>
-            <div class="comparison-row">
-                <span>Same Quality Cut</span>
-                <span class="check">✓</span>
-                <span class="check">✓</span>
-            </div>
-            <div class="comparison-row">
-                <span>Eco-Friendly</span>
-                <span class="check">✓</span>
-                <span class="x">✗</span>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="cta">
-        <h2>Ready for Quiet Lawn Care?</h2>
-        <p>Same great Grantlanta service, now available with 100% electric equipment</p>
-        <a href="index.html#contact" class="cta-btn">Request Electric Service</a>
-    </section>
+        <!-- Services Section -->
+        <section class="services-section" id="services-home">
+            <div class="section-container">
+                <div class="section-header reveal">
+                    <span class="section-badge">Our Services</span>
+                    <h2 class="section-title">Comprehensive Landscaping Solutions</h2>
+                    <p class="section-description">From routine maintenance to complete outdoor transformations, we handle every aspect of your landscape with precision and care.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <h3 class="service-title">Lawn Maintenance</h3>
+                        <p class="service-description">Professional mowing, edging, and trimming services to keep your lawn looking immaculate year-round.</p>
+                        <span class="service-link" onclick="showPage('services')">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-road"></i>
+                        </div>
+                        <h3 class="service-title">Hardscaping</h3>
+                        <p class="service-description">Custom patios, walkways, retaining walls, and outdoor living spaces built to last.</p>
+                        <span class="service-link" onclick="showPage('services')">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3 class="service-title">Landscape Design</h3>
+                        <p class="service-description">Complete landscape design and installation including plants, trees, and decorative elements.</p>
+                        <span class="service-link" onclick="showPage('services')">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="service-title">Seasonal Cleanups</h3>
+                        <p class="service-description">Thorough spring and fall cleanups including leaf removal, debris clearing, and bed preparation.</p>
+                        <span class="service-link" onclick="showPage('services')">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h3 class="service-title">Irrigation Systems</h3>
+                        <p class="service-description">Smart irrigation installation, repair, and maintenance for efficient water management.</p>
+                        <span class="service-link" onclick="showPage('services')">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <div class="service-card reveal">
+                        <div class="service-icon">
+                            <i class="fas fa-spray-can"></i>
+                        </div>
+                        <h3 class="service-title">Pressure Washing</h3>
+                        <p class="service-description">Professional pressure washing for driveways, patios, decks, and exterior surfaces.</p>
+                        <span class="service-link" onclick="showPage('services')">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <footer class="footer">
-        <p>© 2024 Quiet ATL - A Grantlanta Lawn Company • Atlanta, GA • 678-773-1617</p>
-    </footer>
+        <!-- Why Choose Us -->
+        <section class="why-us">
+            <div class="section-container">
+                <div class="why-us-grid">
+                    <div class="why-us-image reveal">
+                        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=700&fit=crop" alt="Professional landscaping team" class="why-us-image-main">
+                        <img src="https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?w=300&h=300&fit=crop" alt="Garden detail" class="why-us-image-accent">
+                        <div class="why-us-badge">
+                            <div class="why-us-badge-number">8+</div>
+                            <div class="why-us-badge-text">Years Strong</div>
+                        </div>
+                    </div>
+                    <div class="why-us-content reveal">
+                        <span class="section-badge">Why Choose Us</span>
+                        <h2>Atlanta's Most Trusted Landscaping Partner</h2>
+                        <p>Since 2016, we've been transforming outdoor spaces across Atlanta with dedication, expertise, and an unwavering commitment to quality. Our team treats every property like it's our own.</p>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-medal"></i>
+                                </div>
+                                <div class="feature-text">
+                                    <h4>100% Satisfaction Guarantee</h4>
+                                    <p>Not happy? We'll make it right or refund your money. No questions asked.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="feature-text">
+                                    <h4>Expert Local Team</h4>
+                                    <p>Our Atlanta-based professionals know the local climate and what works best.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="feature-text">
+                                    <h4>Reliable & On Time</h4>
+                                    <p>We show up when we say we will and complete every job on schedule.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <div class="feature-text">
+                                    <h4>Transparent Pricing</h4>
+                                    <p>Upfront quotes with no hidden fees. You know exactly what you're paying for.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process">
+            <div class="section-container">
+                <div class="section-header reveal">
+                    <span class="section-badge">How It Works</span>
+                    <h2 class="section-title">Simple Steps to Your Dream Yard</h2>
+                    <p class="section-description">We've streamlined our process to make transforming your outdoor space as easy as possible.</p>
+                </div>
+                <div class="process-grid">
+                    <div class="process-card reveal">
+                        <div class="process-number"><span>1</span></div>
+                        <h3>Request a Quote</h3>
+                        <p>Fill out our simple form or give us a call. We'll get back to you within 24 hours.</p>
+                    </div>
+                    <div class="process-card reveal">
+                        <div class="process-number"><span>2</span></div>
+                        <h3>Free Consultation</h3>
+                        <p>We'll visit your property, discuss your vision, and provide a detailed proposal.</p>
+                    </div>
+                    <div class="process-card reveal">
+                        <div class="process-number"><span>3</span></div>
+                        <h3>We Get to Work</h3>
+                        <p>Our expert team executes your project with precision and attention to detail.</p>
+                    </div>
+                    <div class="process-card reveal">
+                        <div class="process-number"><span>4</span></div>
+                        <h3>Enjoy Your Space</h3>
+                        <p>Sit back and enjoy your transformed outdoor oasis. We're here for ongoing support.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials-section">
+            <div class="section-container">
+                <div class="section-header reveal">
+                    <span class="section-badge">Testimonials</span>
+                    <h2 class="section-title">What Our Clients Say</h2>
+                    <p class="section-description">Don't just take our word for it. Here's what Atlanta homeowners have to say about their experience with us.</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card reveal">
+                        <span class="testimonial-quote">"</span>
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">Grantlanta completely transformed our backyard. The team was professional, punctual, and the results exceeded our expectations. Our neighbors are jealous!</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Sarah M." class="testimonial-avatar">
+                            <div>
+                                <div class="testimonial-name">Sarah Mitchell</div>
+                                <div class="testimonial-location">Buckhead, Atlanta</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card reveal">
+                        <span class="testimonial-quote">"</span>
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">I've used many lawn services over the years, but Grantlanta is by far the best. Consistent quality, fair prices, and they actually care about my property.</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="James R." class="testimonial-avatar">
+                            <div>
+                                <div class="testimonial-name">James Rodriguez</div>
+                                <div class="testimonial-location">Midtown, Atlanta</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card reveal">
+                        <span class="testimonial-quote">"</span>
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">The Quiet ATL electric service is amazing! No more loud mowers at 7am. My lawn looks perfect and I love supporting an eco-friendly company.</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Emily K." class="testimonial-avatar">
+                            <div>
+                                <div class="testimonial-name">Emily Kaufman</div>
+                                <div class="testimonial-location">Decatur, GA</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners -->
+        <section class="partners">
+            <div class="section-container">
+                <div class="section-header reveal">
+                    <span class="section-badge">Our Family of Brands</span>
+                    <h2 class="section-title">More Ways We Serve Atlanta</h2>
+                    <p class="section-description">Beyond landscaping, our network of services covers all your property maintenance needs.</p>
+                </div>
+                <div class="partners-grid">
+                    <div class="partner-card reveal" onclick="showPage('quiet')">
+                        <i class="fas fa-bolt partner-icon"></i>
+                        <h3>Quiet ATL</h3>
+                        <p>All-electric, whisper-quiet lawn care. Better for your ears, better for the environment, just as beautiful.</p>
+                        <span class="partner-link">
+                            Explore Quiet ATL <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <div class="partner-card reveal">
+                        <i class="fas fa-handshake partner-icon"></i>
+                        <h3>The Southern Shmooze</h3>
+                        <p>Atlanta's premier network for trusted local contractors. From plumbers to painters, we've vetted the best.</p>
+                        <span class="partner-link">
+                            Join the Community <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                    <div class="partner-card reveal">
+                        <i class="fas fa-recycle partner-icon"></i>
+                        <h3>Peace of Mind Recycling</h3>
+                        <p>Convenient monthly porch pickup recycling service. Making sustainability simple for Atlanta homes.</p>
+                        <span class="partner-link">
+                            Start Recycling <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta" id="contact">
+            <div class="section-container">
+                <div class="cta-content">
+                    <div class="cta-text reveal">
+                        <h2>Ready to Transform Your Outdoor Space?</h2>
+                        <p>Get started today with a free, no-obligation quote. Our team is ready to bring your vision to life.</p>
+                        <div class="cta-features">
+                            <div class="cta-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Free Estimates</span>
+                            </div>
+                            <div class="cta-feature">
+                                <i class="fas fa-check"></i>
+                                <span>No Contracts Required</span>
+                            </div>
+                            <div class="cta-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Same-Week Service</span>
+                            </div>
+                            <div class="cta-feature">
+                                <i class="fas fa-check"></i>
+                                <span>Licensed & Insured</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cta-form-container reveal">
+                        <form class="cta-form" id="quoteForm">
+                            <h3>Get Your Free Quote</h3>
+                            <p class="cta-form-subtitle">We'll respond within 24 hours</p>
+                            <div class="form-group">
+                                <input type="text" class="form-input" placeholder="Your Name *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" class="form-input" placeholder="Phone Number *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-input" placeholder="Email Address">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-input" placeholder="Tell us about your project..."></textarea>
+                            </div>
+                            <button type="submit" class="form-submit">
+                                <i class="fas fa-paper-plane"></i>
+                                Request Free Quote
+                            </button>
+                            <p class="form-note">
+                                <i class="fas fa-lock"></i> Your information is secure and never shared
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="section-container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <div class="footer-logo-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <span class="footer-logo-text">Grantlanta Lawn</span>
+                        </div>
+                        <p>Atlanta's trusted landscaping collective since 2016. Transforming outdoor spaces with quality, care, and a commitment to customer satisfaction.</p>
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-nextdoor"></i></a>
+                            <a href="#"><i class="fab fa-yelp"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <ul class="footer-links">
+                            <li><a onclick="showPage('services')">Lawn Maintenance</a></li>
+                            <li><a onclick="showPage('services')">Hardscaping</a></li>
+                            <li><a onclick="showPage('services')">Landscape Design</a></li>
+                            <li><a onclick="showPage('services')">Seasonal Cleanups</a></li>
+                            <li><a onclick="showPage('services')">Pressure Washing</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul class="footer-links">
+                            <li><a onclick="showPage('team')">About Us</a></li>
+                            <li><a onclick="showPage('team')">Our Team</a></li>
+                            <li><a onclick="showPage('reviews')">Reviews</a></li>
+                            <li><a onclick="showPage('quiet')">Quiet ATL</a></li>
+                            <li><a onclick="scrollToContact()">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact Us</h4>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>678-773-1617</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@grantlantalawn.com</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Serving All of Metro Atlanta</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2024 Grantlanta Lawn. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==================== SERVICES PAGE ==================== -->
+    <div id="page-services" class="page">
+        <section class="page-hero">
+            <h1>Our Services</h1>
+            <p>Comprehensive landscaping solutions tailored to your needs and budget</p>
+        </section>
+
+        <section class="services-page-section">
+            <div class="services-page-grid">
+                <div class="service-page-card">
+                    <div class="service-page-icon"><i class="fas fa-cut"></i></div>
+                    <h3>Lawn Maintenance</h3>
+                    <p>Weekly or bi-weekly mowing, edging, trimming, and blowing. Keep your lawn pristine year-round with our reliable service.</p>
+                    <span class="service-price">Starting at $45/visit</span>
+                </div>
+                <div class="service-page-card">
+                    <div class="service-page-icon"><i class="fas fa-road"></i></div>
+                    <h3>Hardscaping</h3>
+                    <p>Custom patios, walkways, retaining walls, fire pits, and outdoor living spaces. Built to last with premium materials.</p>
+                    <span class="service-price">Custom quotes available</span>
+                </div>
+                <div class="service-page-card">
+                    <div class="service-page-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>Landscape Design & Install</h3>
+                    <p>Complete landscape transformations including plants, trees, mulch, and decorative elements designed for your space.</p>
+                    <span class="service-price">Starting at $500</span>
+                </div>
+                <div class="service-page-card">
+                    <div class="service-page-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Seasonal Cleanups</h3>
+                    <p>Spring and fall cleanups including leaf removal, bed preparation, debris clearing, and property refresh.</p>
+                    <span class="service-price">Starting at $150</span>
+                </div>
+                <div class="service-page-card">
+                    <div class="service-page-icon"><i class="fas fa-tint"></i></div>
+                    <h3>Irrigation Systems</h3>
+                    <p>Smart irrigation installation, repair, and seasonal maintenance for efficient water management and lawn health.</p>
+                    <span class="service-price">Starting at $200</span>
+                </div>
+                <div class="service-page-card">
+                    <div class="service-page-icon"><i class="fas fa-spray-can"></i></div>
+                    <h3>Pressure Washing</h3>
+                    <p>Professional cleaning for driveways, patios, decks, fences, siding, and home exteriors.</p>
+                    <span class="service-price">Starting at $150</span>
+                </div>
+                <div class="service-page-card">
+                    <div class="service-page-icon"><i class="fas fa-home"></i></div>
+                    <h3>Gutter Cleaning</h3>
+                    <p>Complete gutter cleaning and maintenance to protect your home from water damage and foundation issues.</p>
+                    <span class="service-price">Starting at $100</span>
+                </div>
+                <div class="service-page-card">
+                    <div class="service-page-icon"><i class="fas fa-tree"></i></div>
+                    <h3>Tree & Shrub Care</h3>
+                    <p>Professional pruning, shaping, and maintenance of trees and shrubs to keep your landscape healthy and beautiful.</p>
+                    <span class="service-price">Starting at $75</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="simple-cta">
+            <h2>Ready to Get Started?</h2>
+            <p>Contact us today for a free estimate on any of our services</p>
+            <button class="simple-cta-btn" onclick="scrollToContact()">
+                <i class="fas fa-phone"></i>
+                Request Free Quote
+            </button>
+        </section>
+
+        <footer class="simple-footer">
+            <p>© 2024 Grantlanta Lawn • Atlanta, GA • 678-773-1617</p>
+        </footer>
+    </div>
+
+    <!-- ==================== REVIEWS PAGE ==================== -->
+    <div id="page-reviews" class="page">
+        <section class="page-hero">
+            <h1>What Our Clients Say</h1>
+            <p>Real reviews from real Atlanta homeowners</p>
+            <div class="page-hero-stats">
+                <div class="page-hero-stat">
+                    <h3>5.0</h3>
+                    <p>Average Rating</p>
+                </div>
+                <div class="page-hero-stat">
+                    <h3>500+</h3>
+                    <p>Happy Clients</p>
+                </div>
+                <div class="page-hero-stat">
+                    <h3>100%</h3>
+                    <p>Satisfaction</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews-page-section" style="background: var(--gray-100);">
+            <div class="review-page-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Grantlanta completely transformed our backyard. The team was professional, punctual, and the results exceeded our expectations. Our neighbors keep asking who did our landscaping!"</p>
+                <div class="review-author">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="Sarah" class="review-avatar">
+                    <div>
+                        <div class="review-name">Sarah Mitchell</div>
+                        <div class="review-location">Buckhead, Atlanta</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-page-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"I've used many lawn services over the years, but Grantlanta is by far the best. Consistent quality, fair prices, and they actually care about my property. Highly recommend!"</p>
+                <div class="review-author">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="James" class="review-avatar">
+                    <div>
+                        <div class="review-name">James Rodriguez</div>
+                        <div class="review-location">Midtown, Atlanta</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-page-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"The Quiet ATL electric service is amazing! No more loud mowers disturbing my work-from-home calls. My lawn looks perfect and I love supporting an eco-friendly company."</p>
+                <div class="review-author">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100" alt="Emily" class="review-avatar">
+                    <div>
+                        <div class="review-name">Emily Kaufman</div>
+                        <div class="review-location">Decatur, GA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-page-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Grant and his team built an incredible patio for us. The attention to detail was impressive and the project was completed on time and on budget. We couldn't be happier!"</p>
+                <div class="review-author">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100" alt="Michael" class="review-avatar">
+                    <div>
+                        <div class="review-name">Michael Thompson</div>
+                        <div class="review-location">Sandy Springs, GA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-page-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"We've been using Grantlanta for 3 years now. They maintain our lawn weekly and it's never looked better. Reliable, affordable, and always professional."</p>
+                <div class="review-author">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100" alt="Lisa" class="review-avatar">
+                    <div>
+                        <div class="review-name">Lisa Chen</div>
+                        <div class="review-location">Alpharetta, GA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-page-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"From the first consultation to the final walkthrough, the experience was top-notch. They listened to what we wanted and delivered beyond our expectations."</p>
+                <div class="review-author">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100" alt="Robert" class="review-avatar">
+                    <div>
+                        <div class="review-name">Robert Williams</div>
+                        <div class="review-location">Marietta, GA</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="simple-cta">
+            <h2>Join Our Happy Customers</h2>
+            <p>Experience the Grantlanta difference for yourself</p>
+            <button class="simple-cta-btn" onclick="scrollToContact()">
+                <i class="fas fa-star"></i>
+                Get Your Free Quote
+            </button>
+        </section>
+
+        <footer class="simple-footer">
+            <p>© 2024 Grantlanta Lawn • Atlanta, GA • 678-773-1617</p>
+        </footer>
+    </div>
+
+    <!-- ==================== TEAM PAGE ==================== -->
+    <div id="page-team" class="page">
+        <section class="page-hero">
+            <h1>Meet The Team</h1>
+            <p>The passionate people behind Atlanta's most trusted landscaping company</p>
+        </section>
+
+        <section class="team-section">
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300" alt="Grant" class="team-photo">
+                    <h3>Grant Harrison</h3>
+                    <p class="team-role">Founder & CEO</p>
+                    <p class="team-bio">With over 15 years in landscaping, Grant founded Grantlanta with a simple mission: deliver exceptional service at fair prices. His passion for transforming outdoor spaces drives everything we do.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300" alt="Maria" class="team-photo">
+                    <h3>Maria Santos</h3>
+                    <p class="team-role">Operations Manager</p>
+                    <p class="team-bio">Maria ensures every project runs smoothly, coordinating our crews and keeping clients happy from start to finish. Her organizational skills keep Grantlanta running like clockwork.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300" alt="David" class="team-photo">
+                    <h3>David Chen</h3>
+                    <p class="team-role">Lead Landscape Designer</p>
+                    <p class="team-bio">David's creative vision transforms ordinary yards into stunning outdoor spaces. With a degree in landscape architecture, he brings both artistry and technical expertise to every project.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300" alt="Marcus" class="team-photo">
+                    <h3>Marcus Johnson</h3>
+                    <p class="team-role">Hardscape Specialist</p>
+                    <p class="team-bio">Marcus leads our hardscaping division with 12 years of experience in patios, retaining walls, and outdoor structures. His attention to detail is unmatched.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300" alt="Ashley" class="team-photo">
+                    <h3>Ashley Williams</h3>
+                    <p class="team-role">Customer Experience Lead</p>
+                    <p class="team-bio">Ashley is the voice of Grantlanta, handling all client communications with warmth and professionalism. She ensures every customer feels valued and heard.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300" alt="Carlos" class="team-photo">
+                    <h3>Carlos Rivera</h3>
+                    <p class="team-role">Quiet ATL Director</p>
+                    <p class="team-bio">Carlos heads our eco-friendly electric division, passionate about sustainable landscaping. He's on a mission to make Atlanta greener, one lawn at a time.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <h2>Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Passion</h3>
+                    <p>We genuinely love what we do and it shows in every project we complete</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Integrity</h3>
+                    <p>Honest pricing, reliable service, and always keeping our promises to clients</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Sustainability</h3>
+                    <p>Eco-friendly practices and electric options for a greener Atlanta</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon"><i class="fas fa-users"></i></div>
+                    <h3>Community</h3>
+                    <p>We're proud to serve Atlanta and give back to the community we love</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="simple-cta">
+            <h2>Join Our Growing Team</h2>
+            <p>We're always looking for talented people who share our passion</p>
+            <button class="simple-cta-btn" onclick="scrollToContact()">
+                <i class="fas fa-envelope"></i>
+                Get In Touch
+            </button>
+        </section>
+
+        <footer class="simple-footer">
+            <p>© 2024 Grantlanta Lawn • Atlanta, GA • 678-773-1617</p>
+        </footer>
+    </div>
+
+    <!-- ==================== QUIET ATL PAGE ==================== -->
+    <div id="page-quiet" class="page">
+        <section class="quiet-hero">
+            <span class="quiet-hero-badge"><i class="fas fa-bolt"></i> &nbsp;100% Electric Lawn Care</span>
+            <h1>The <span>Quiet</span> Revolution in Lawn Care</h1>
+            <p>All the beauty of a perfectly maintained lawn without the noise, emissions, or disruption. Better for you, your neighbors, and the planet.</p>
+            <button class="btn btn-primary" onclick="scrollToContact()">
+                <i class="fas fa-calendar-check"></i>
+                Schedule Electric Service
+            </button>
+        </section>
+
+        <section class="quiet-benefits">
+            <h2>Why Go Electric?</h2>
+            <div class="quiet-benefits-grid">
+                <div class="quiet-benefit-card">
+                    <div class="quiet-benefit-icon"><i class="fas fa-volume-mute"></i></div>
+                    <h3>Whisper Quiet</h3>
+                    <p>No more 7am wake-up calls from gas-powered mowers. Our electric equipment operates at a fraction of the noise level.</p>
+                </div>
+                <div class="quiet-benefit-card">
+                    <div class="quiet-benefit-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Zero Emissions</h3>
+                    <p>No gas, no fumes, no carbon footprint. Just clean, green lawn care powered by electricity.</p>
+                </div>
+                <div class="quiet-benefit-card">
+                    <div class="quiet-benefit-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Healthier Air</h3>
+                    <p>Better for your family, pets, and everyone who enjoys your outdoor space. No harmful exhaust to breathe.</p>
+                </div>
+                <div class="quiet-benefit-card">
+                    <div class="quiet-benefit-icon"><i class="fas fa-home"></i></div>
+                    <h3>Neighbor Friendly</h3>
+                    <p>Work from home? Have a baby napping? Our quiet equipment won't disturb your life or your neighbors.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="comparison-section">
+            <h2>Electric vs. Gas Comparison</h2>
+            <div class="comparison-table">
+                <div class="comparison-row header">
+                    <span>Feature</span>
+                    <span>Electric</span>
+                    <span>Gas</span>
+                </div>
+                <div class="comparison-row">
+                    <span>Quiet Operation</span>
+                    <span class="check">✓</span>
+                    <span class="x-mark">✗</span>
+                </div>
+                <div class="comparison-row">
+                    <span>Zero Emissions</span>
+                    <span class="check">✓</span>
+                    <span class="x-mark">✗</span>
+                </div>
+                <div class="comparison-row">
+                    <span>No Gas Smell</span>
+                    <span class="check">✓</span>
+                    <span class="x-mark">✗</span>
+                </div>
+                <div class="comparison-row">
+                    <span>Same Quality Cut</span>
+                    <span class="check">✓</span>
+                    <span class="check">✓</span>
+                </div>
+                <div class="comparison-row">
+                    <span>Eco-Friendly</span>
+                    <span class="check">✓</span>
+                    <span class="x-mark">✗</span>
+                </div>
+                <div class="comparison-row">
+                    <span>Lower Maintenance</span>
+                    <span class="check">✓</span>
+                    <span class="x-mark">✗</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="simple-cta">
+            <h2>Ready for Quiet Lawn Care?</h2>
+            <p>Same great Grantlanta service, now available with 100% electric equipment</p>
+            <button class="simple-cta-btn" onclick="scrollToContact()">
+                <i class="fas fa-bolt"></i>
+                Request Electric Service
+            </button>
+        </section>
+
+        <footer class="simple-footer">
+            <p>© 2024 Quiet ATL - A Grantlanta Lawn Company • Atlanta, GA • 678-773-1617</p>
+        </footer>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Navigation Scroll Effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const mobileNav = document.getElementById('mobileNav');
+
+        navToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        function closeMobileNav() {
+            navToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Page Navigation
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            document.getElementById('page-' + pageName).classList.add('active');
+
+            // Update nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === pageName) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Reset nav appearance for non-home pages
+            if (pageName !== 'home') {
+                nav.classList.add('scrolled');
+            }
+
+            // Trigger reveal animations on new page
+            setTimeout(() => {
+                initRevealAnimations();
+            }, 100);
+        }
+
+        function scrollToContact() {
+            showPage('home');
+            setTimeout(() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 300);
+        }
+
+        // Particle Effect
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            particle.style.width = (5 + Math.random() * 10) + 'px';
+            particle.style.height = particle.style.width;
+            particlesContainer.appendChild(particle);
+        }
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.hero-stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                let count = 0;
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                
+                const updateCounter = () => {
+                    count += increment;
+                    if (count < target) {
+                        counter.textContent = Math.floor(count) + (target === 100 ? '%' : '+');
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + (target === 100 ? '%' : '+');
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Reveal on Scroll
+        function initRevealAnimations() {
+            const reveals = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            reveals.forEach(reveal => {
+                reveal.classList.remove('active');
+                revealObserver.observe(reveal);
+            });
+        }
+
+        // Initial setup
+        initRevealAnimations();
+
+        // Animate counters when hero is visible
+        const heroObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    heroObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const heroSection = document.querySelector('.hero');
+        if (heroSection) {
+            heroObserver.observe(heroSection);
+        }
+
+        // Scroll to Top
+        const scrollTop = document.getElementById('scrollTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        scrollTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Form Submit
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your request! We\'ll be in touch within 24 hours.');
+            this.reset();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
