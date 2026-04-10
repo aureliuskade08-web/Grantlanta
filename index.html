@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Grantlanta Lawn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #16a34a;
+            --primary-dark: #15803d;
+            --dark: #0f172a;
+            --gray-600: #475569;
+            --gray-100: #f1f5f9;
+            --white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--dark); }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        .nav {
+            background: var(--white);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--dark);
+        }
+        .nav-logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), #22c55e);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        .nav-logo span { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--gray-600); font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--dark), #1a3a2f);
+            padding: 100px 40px;
+            text-align: center;
+            color: white;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 15px; }
+        .hero p { font-size: 1.2rem; opacity: 0.8; max-width: 600px; margin: 0 auto; }
+
+        .services {
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: var(--gray-100);
+            border-radius: 20px;
+            padding: 40px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .service-card h3 { font-size: 1.4rem; margin-bottom: 15px; }
+        .service-card p { color: var(--gray-600); line-height: 1.7; margin-bottom: 15px; }
+        .service-price { font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+
+        .cta {
+            background: var(--primary);
+            padding: 80px 40px;
+            text-align: center;
+            color: white;
+        }
+        .cta h2 { font-size: 2.5rem; margin-bottom: 15px; }
+        .cta p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 30px; }
+        .cta-btn {
+            background: white;
+            color: var(--primary);
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            background: var(--dark);
+            padding: 40px;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .services { padding: 60px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon"><i class="fas fa-leaf"></i></div>
+            <span>Grantlanta Lawn</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="meettheteam.html">Our Team</a></li>
+            <li><a href="quietatl.html">Quiet ATL</a></li>
+        </ul>
+        <a href="index.html#contact" class="nav-cta">Get Quote</a>
+    </nav>
+
+    <section class="hero">
+        <h1>Our Services</h1>
+        <p>Comprehensive landscaping solutions tailored to your needs and budget</p>
+    </section>
+
+    <section class="services">
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-cut"></i></div>
+                <h3>Lawn Maintenance</h3>
+                <p>Weekly or bi-weekly mowing, edging, trimming, and blowing. Keep your lawn pristine year-round with our reliable service.</p>
+                <span class="service-price">Starting at $45/visit</span>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-road"></i></div>
+                <h3>Hardscaping</h3>
+                <p>Custom patios, walkways, retaining walls, fire pits, and outdoor living spaces. Built to last with premium materials.</p>
+                <span class="service-price">Custom quotes</span>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-seedling"></i></div>
+                <h3>Landscape Design & Install</h3>
+                <p>Complete landscape transformations including plants, trees, mulch, and decorative elements.</p>
+                <span class="service-price">Starting at $500</span>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-leaf"></i></div>
+                <h3>Seasonal Cleanups</h3>
+                <p>Spring and fall cleanups including leaf removal, bed preparation, and debris clearing.</p>
+                <span class="service-price">Starting at $150</span>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-tint"></i></div>
+                <h3>Irrigation Systems</h3>
+                <p>Smart irrigation installation, repair, and seasonal maintenance for efficient water management.</p>
+                <span class="service-price">Starting at $200</span>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-spray-can"></i></div>
+                <h3>Pressure Washing</h3>
+                <p>Professional cleaning for driveways, patios, decks, fences, and home exteriors.</p>
+                <span class="service-price">Starting at $150</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Ready to Get Started?</h2>
+        <p>Contact us today for a free estimate on any of our services</p>
+        <a href="index.html#contact" class="cta-btn">Request Free Quote</a>
+    </section>
+
+    <footer class="footer">
+        <p>© 2024 Grantlanta Lawn • Atlanta, GA • 678-773-1617</p>
+    </footer>
+</body>
+</html>
